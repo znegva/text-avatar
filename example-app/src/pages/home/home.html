@@ -14,8 +14,11 @@
   </ion-refresher>
 
   <ion-list>
-    <button ion-item *ngFor="let user of users" (click)="presentUserInfoAlert(user)">
-      <text-avatar [text]="user.name" item-left></text-avatar>
+    <button ion-item *ngFor="let user of users; let i = index" (click)="presentUserInfoAlert(user)">
+      <text-avatar *ngIf="i % 2==1" [text]="user.name" item-left></text-avatar>
+	  <ion-avatar *ngIf="i % 2 == 0" item-left>
+        <img src="{{ 'http://lorempixel.com/200/200/people/' + i}}">
+	  </ion-avatar>
       <h2>{{ user.name || upper}}</h2>
       <p>{{ user.company }} - {{ user.job_title }}</p>
     </button>
